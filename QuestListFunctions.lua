@@ -35,6 +35,7 @@ function AAPClassic.QLF.PrintText(ExtralineText)
 		AAPClassic.QL.QuestFrames[LineNumber]:Show()
 	end
 end
+
 function AAPClassic.QLF.SetButton(ItemIdz, stuck)
 	if (stuck and stuck == "HS") then
 		local CL_Items, itemLink, clt3, clt4, clt5, clt6, clt7, clt8, clt9, CL_ItemTex = GetItemInfo(6948)
@@ -203,7 +204,8 @@ function AAPClassic.QLF.QuestText(Step)
 	end
 	if (Step["CRange"] and LineNumber ~= 20) then
 		LineNumber = LineNumber + 1
-		AAPClassic.QL.QuestFrames["FS"..LineNumber]:SetText("Run to Waypoint ("..AAPClassic.CheckCRangeText()..")")
+		zone = Step["Zone"]:gsub('%A','')
+		AAPClassic.QL.QuestFrames["FS"..LineNumber]:SetText("Run to Waypoint ("..AAPClassic.CheckCRangeText().. " in " ..zone..")")
 		AAPClassic.QL.QuestFrames[LineNumber]:Show()
 	end
 	if (Step["SetHS"] and LineNumber ~= 20) then
