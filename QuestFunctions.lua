@@ -283,25 +283,6 @@ function AAPClassic.QF.CRange()
 	end
 	AAPClassic.QH.BookingList.SetQPTT = 1
 end
-function AAPClassic.QF.IsAAPQuest(QuestId)
-	for _, step in pairs(AAPClassic.Path[AAPClassic.QH.ZoneNr]) do
-		if (step["PickUp"] ~= nil) then
-			for _, quest in pairs(step["PickUp"]) do
-				if (quest == QuestId) then
-					return true
-				end
-			end
-		end
-	end
-	return false
-end
-function AAPClassic.QF.GetQuestIDFromTitle(QuestTitle)
-	for i, quest in pairs(AAPClassic["questsNames"]) do
-		if (quest["T"] == QuestTitle) then
-			return i
-		end
-	end
-end
 function AAPClassic.QF.GetFP()
 	local CurStep = AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr]
 	local Step = AAPClassic.Path[AAPClassic.QH.ZoneNr][CurStep]
@@ -340,5 +321,24 @@ function AAPClassic.QF.ExtraQ()
 			AAPClassic.QH.FuncLoopNumber = 1
 		end
 		AAPClassic.QH.BookingList.SetQPTT = 1
+	end
+end
+function AAPClassic.QF.IsAAPQuest(QuestId)
+	for _, step in pairs(AAPClassic.Path[AAPClassic.QH.ZoneNr]) do
+		if (step["PickUp"] ~= nil) then
+			for _, quest in pairs(step["PickUp"]) do
+				if (quest == QuestId) then
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
+function AAPClassic.QF.GetQuestIDFromTitle(QuestTitle)
+	for i, quest in pairs(AAPClassic["questsNames"]) do
+		if (quest["T"] == QuestTitle) then
+			return i
+		end
 	end
 end
