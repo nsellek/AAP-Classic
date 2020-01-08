@@ -203,7 +203,8 @@ function AAPClassic.QLF.QuestText(Step)
 	end
 	if (Step["CRange"] and LineNumber ~= 20) then
 		LineNumber = LineNumber + 1
-		AAPClassic.QL.QuestFrames["FS"..LineNumber]:SetText("Run to Waypoint ("..AAPClassic.CheckCRangeText()..")")
+		zone = Step["Zone"]:gsub('%A','')
+		AAPClassic.QL.QuestFrames["FS"..LineNumber]:SetText("Run to Waypoint ("..AAPClassic.CheckCRangeText().. " in " ..zone..")")
 		AAPClassic.QL.QuestFrames[LineNumber]:Show()
 	end
 	if (Step["SetHS"] and LineNumber ~= 20) then

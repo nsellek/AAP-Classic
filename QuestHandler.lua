@@ -1298,7 +1298,9 @@ AAPClassic.QH.EventFrame:SetScript("OnEvent", function(self, event, ...)
 		if (IsControlKeyDown()) then
 			return
 		end
-		AAPClassic.QH.BookingList.AcceptQuest = 1
+		if (AAPClassic.QF.IsAAPQuest(GetQuestID())) then
+			AAPClassic.QH.BookingList.AcceptQuest = 1
+		end
 	elseif (event=="QUEST_PROGRESS") then
 		if (IsControlKeyDown()) then
 			return
@@ -1342,7 +1344,8 @@ AAPClassic.QH.EventFrame:SetScript("OnEvent", function(self, event, ...)
 			end    
 			for i = lastAvailableQuest, numAvailableQuests do
 				lastAvailableQuest = i;
-				if (not IsControlKeyDown()) then
+				QuestID = AAPClassic.QF.GetQuestIDFromTitle(GetAvailableTitle(i))
+				if (AAPClassic.QF.IsAAPQuest(QuestID)) then
 					SelectAvailableQuest(i);
 				end
 			end
