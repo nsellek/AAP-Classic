@@ -325,8 +325,22 @@ function AAPClassic.QF.ExtraQ()
 end
 function AAPClassic.QF.IsAAPQuest(QuestId)
 	for _, step in pairs(AAPClassic.Path[AAPClassic.QH.ZoneNr]) do
+		if (step["Done"] ~= nil) then
+			for _, quest in pairs(step["Done"]) do
+				if (quest == QuestId) then
+					return true
+				end
+			end
+		end
 		if (step["PickUp"] ~= nil) then
 			for _, quest in pairs(step["PickUp"]) do
+				if (quest == QuestId) then
+					return true
+				end
+			end
+		end
+		if (step["CRange"] ~= nil) then
+			for _, quest in pairs(step["Done"]) do
 				if (quest == QuestId) then
 					return true
 				end
