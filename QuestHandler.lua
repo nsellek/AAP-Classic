@@ -1312,14 +1312,14 @@ AAPClassic.QH.EventFrame:SetScript("OnEvent", function(self, event, ...)
 		if (not IsAutocompleteOn()) then
 			return
 		end
-		AAPClassic.QH.BookingList.AcceptQuest = 1
+		if (AAPClassic.QF.IsAAPQuest(GetQuestID())) then
+			AAPClassic.QH.BookingList.AcceptQuest = 1
+		end
 	elseif (event=="QUEST_PROGRESS") then
 		if (not IsAutocompleteOn()) then
 			return
 		end
-		if (AAPClassic.QF.IsAAPQuest(GetQuestID())) then
-			AAPClassic.QH.BookingList.AcceptQuest = 1
-		end
+		AAPClassic.QH.BookingList.CompleteQuest = 1
 	elseif (event=="QUEST_COMPLETE") then
 		if (not IsAutocompleteOn()) then
 			return
