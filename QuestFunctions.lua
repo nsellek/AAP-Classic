@@ -339,12 +339,8 @@ function AAPClassic.QF.IsAAPQuest(QuestId)
 				end
 			end
 		end
-		if (step["CRange"] ~= nil) then
-			for _, quest in pairs(step["Done"]) do
-				if (quest == QuestId) then
-					return true
-				end
-			end
+		if (step["CRange"] == QuestId) then
+			return true
 		end
 	end
 	return false
