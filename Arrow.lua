@@ -29,7 +29,7 @@ AAPClassic.ArrowFrame.distance:SetFontObject("GameFontNormalSmall")
 AAPClassic.ArrowFrame.distance:SetPoint("TOP", AAPClassic.ArrowFrame, "BOTTOM", 0, 0)
 AAPClassic.ArrowFrame:Hide()
 AAPClassic.ArrowFrame:SetScript("OnMouseDown", function(self, button)
-	if button == "LeftButton" and not AAPClassic.ArrowFrameM.isMoving then
+	if button == "LeftButton" and not AAPClassic.ArrowFrameM.isMoving and not AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] then
 		AAPClassic.ArrowFrameM:StartMoving();
 		AAPClassic.ArrowFrameM.isMoving = true;
 	end
@@ -135,7 +135,7 @@ function AAPClassic.ArrowFrame.CheckDistance()
 	return 0
 end
 function AAPClassic.ArrowFrame.ArrowPosTest()
-	if (1 == 0) then
+	if AAPC1 and AAPC1[AAPClassic.Realm][AAPClassic.Name] and not AAPC1[AAPClassic.Realm][AAPClassic.Name]['ShowArrow'] then
 		AAPClassic.ArrowActive = 0
 		AAPClassic.ArrowFrame:Hide()
 	else

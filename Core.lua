@@ -340,6 +340,19 @@ local function AAP_SlashCmd(AAP_index)
         print ("/aap checkup: "..cc.."scan quest log for unneeded, missing or old quests")
 	end
 end
+
+function AAPClassic.LoadDefaultSettings()
+    if AAPC1[AAPClassic.Realm][AAPClassic.Name]["noauto"] == nil then
+        AAPC1[AAPClassic.Realm][AAPClassic.Name]["noauto"] = false
+    end
+    if AAPC1[AAPClassic.Realm][AAPClassic.Name]["ShowArrow"] == nil then
+        AAPC1[AAPClassic.Realm][AAPClassic.Name]["ShowArrow"] = true
+    end
+    if AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] == nil then
+        AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] = false
+    end
+end
+
 AAPClassic.EventFrame = CreateFrame("Frame")
 AAPClassic.EventFrame:RegisterEvent ("ADDON_LOADED")
 
@@ -365,6 +378,7 @@ AAPClassic.EventFrame:SetScript("OnEvent", function(self, event, ...)
 			if (not AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"]) then
 				AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"] = {}
             end
+            AAPClassic.LoadDefaultSettings()
             
             -- AAPClassic.MakeQuestOrderList()
             AAPC_LoadInTimer = AAPClassic.EventFrame:CreateAnimationGroup()

@@ -217,6 +217,7 @@ function AAPClassic.LoadOptionsFrame()
 			AAPClassic.OptionsFrame.MainFrame.isMoving = false
 		end
 	end)
+
 	AAPClassic.OptionsFrame.AutoAcceptCheckButton = CreateFrame('CheckButton', 'AAPC_AutoAcceptCheckButton', AAPClassic.OptionsFrame.MainFrame.QuestOptions, 'ChatConfigCheckButtonTemplate')
 	AAPClassic.OptionsFrame.AutoAcceptCheckButton:SetPoint('TOPLEFT', AAPClassic.OptionsFrame.MainFrame.QuestOptions, 10, -10)
 	if not AAPC1[AAPClassic.Realm][AAPClassic.Name]["noauto"] then
@@ -301,10 +302,10 @@ function AAPClassic.LoadOptionsFrame()
 	AAPClassic.OptionsFrame.MainFrame.ArrowOptions:Hide()
 	AAPClassic.OptionsFrame.LockArrowButton = CreateFrame('CheckButton', 'AAPC_LockArrowCheckButton', AAPClassic.OptionsFrame.MainFrame.ArrowOptions, 'ChatConfigCheckButtonTemplate')
 	AAPClassic.OptionsFrame.LockArrowButton:SetPoint('TOPLEFT', AAPClassic.OptionsFrame.MainFrame.ArrowOptions, 10, -10)
-	if not AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] then
-		AAPClassic.OptionsFrame.LockArrowButton:SetChecked(false)
-	else
+	if AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] then
 		AAPClassic.OptionsFrame.LockArrowButton:SetChecked(true)
+	else
+		AAPClassic.OptionsFrame.LockArrowButton:SetChecked(false)
 	end
 	getglobal(AAPClassic.OptionsFrame.LockArrowButton:GetName() .. 'Text'):SetText(': Lock Arrow')
 	getglobal(AAPClassic.OptionsFrame.LockArrowButton:GetName() .. 'Text'):SetTextColor(1, 1, 1)
@@ -313,6 +314,24 @@ function AAPClassic.LoadOptionsFrame()
 			AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] = true
 		else
 			AAPC1[AAPClassic.Realm][AAPClassic.Name]['LockArrow'] = false
+		end
+	end)
+
+	AAPClassic.OptionsFrame.ShowQuestArrowCheckButton = CreateFrame('CheckButton', 'AAPC_ShowQuestArrow', AAPClassic.OptionsFrame.MainFrame.ArrowOptions, 'ChatConfigCheckButtonTemplate')
+	AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:SetPoint('TOPLEFT', AAPClassic.OptionsFrame.MainFrame.ArrowOptions, 10, -30)
+	if AAPC1[AAPClassic.Realm][AAPClassic.Name]['ShowArrow'] == true then
+		AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:SetChecked(true)
+	else
+		AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:SetChecked(false)
+	end
+	getglobal(AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:GetName() .. 'Text'):SetText(': Show Questing Arrow')
+	getglobal(AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:GetName() .. 'Text'):SetTextColor(1, 1, 1)
+	AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:SetScript('OnClick', function()
+		if AAPClassic.OptionsFrame.ShowQuestArrowCheckButton:GetChecked() then
+			AAPC1[AAPClassic.Realm][AAPClassic.Name]['ShowArrow'] = true
+			AAPClassic.ArrowActive = 1
+		else
+			AAPC1[AAPClassic.Realm][AAPClassic.Name]['ShowArrow'] = false
 		end
 	end)
 	--------------------- Arrow Options End ----------------------------

@@ -261,6 +261,7 @@ AAPClassic.QL.QuestListEventFrame:SetScript("OnEvent", function(self, event, ...
 		local arg1, arg2, arg3, arg4, arg5 = ...;
 		if (arg1 == "AAP-Classic") then
 			AAPClassic.MakeQuestList()
+			AAPClassic.QuestListLoadin = 1
 		end
 	end
 end)
